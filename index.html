@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>像素画板</title>
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div>
+        <label>单元格大小:</label>
+        <select id="cellSize">
+            <option value="10">10x10</option>
+            <option value="20">20x20</option>
+            <option value="30">30x30</option>
+        </select>
+        <label>画笔颜色:</label>
+        <input type="color" id="color">
+        <button onclick="clearCanvas()">清除</button>
+    </div>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var color = '#000';
+        var cellSize = 10;
+
+        canvas.addEventListener('mousedown', function(event) {
+            var x = event.offsetX;
+            var y = event.offsetY;
+            fillCell(x, y);
+        });
+
+        canvas.addEventListener('mousemove', function(event) {
+            if (event.buttons === 1) {
+                var x = event.offsetX;
+                var y = event.offsetY;
+                fillCell(x, y);
+            }
+        });
+
+        function fillCell(x, y) {
+            ctx.fillStyle = color;
+            ctx.fillRect(Math.floor(x / cellSize) * cellSize, Math.floor(y / cellSize) * cellSize, cellSize, cellSize);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        document.getElementById('cellSize').addEventListener('change', function(event) {
+            cellSize = parseInt(event.target.value);
+        });
+
+        document.getElementById('color').addEventListener('change', function(event) {
+            color = event.target.value;
+        });
+    </script>
+</body>
+</html>
