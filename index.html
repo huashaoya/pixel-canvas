@@ -1,63 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>像素画板</title>
-    <style>
+    <head>
+        <meta charset="utf-8">
+        <title>芥子世界</title>
+    </head>
+      <style>
+        #header{
+            width:100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #header .title{
+            font:bold 50px Arial;
+             margin:0px auto;
+            color:#6BA25E;           
+        }
+        #header .author{
+            font-size:15px;
+            margin:5px auto;
+            color:#6BA25E;          
+        }
+        #body #kuang{
+            width:580px;
+            height: 580px;
+            background-color:#6BA25E;            
+            margin:10px auto;
+            border-radius:30px;
+            position: relative;
+        }
+        #body #kuang .px{
+           position: absolute;
+           width:5px;
+           height: 5px;          
+        } 
+        .rg{
+				float: left;
+				width: 400px;
+				height: 100px;
+				text-align: center;
+				border: 1px black solid;
+				margin-left:-1px ;
+			} 
         canvas {
-            border: 1px solid #ccc;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="canvas"></canvas>
-    <div>
-        <label>单元格大小:</label>
-        <select id="cellSize">
-            <option value="10">10x10</option>
-            <option value="20">20x20</option>
-            <option value="30">30x30</option>
-        </select>
-        <label>画笔颜色:</label>
-        <input type="color" id="color">
-        <button onclick="clearCanvas()">清除</button>
+            border: 1px solid #6BA25E;
+            margin: 40px;
+            border-radius: 10px;
+        }      
+        </style>         
+    </head>    
+ <body>     	
+  <div id="header">
+        <h1 class="title">芥子世界</h1>
+       <h3 class="author">Created by cxk V2.0.0</h3>
     </div>
-    <script>
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        var color = '#000';
-        var cellSize = 10;
+     <div id="body">
+         <div id='kuang'>          
+            <canvas id="canvas" width="500" height="500"></canvas>
+         </div>        
+     </div>      
+			<div class="rg" id="secc">
+				<p>选择芥子颜色</p>
+				<input type="color" id="color"/>
+			
+                <div>
+                    <label>单元格大小:</label>
+                    <select id="cellSize">
+                        <option value="10">10x10</option>
+                        <option value="20">20x20</option>
+                        <option value="30">30x30</option>
+                    </select>
+                </div>
+            </div>
+ </body>   
+ <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var color = '#000';
+    var cellSize = 10;
 
-        canvas.addEventListener('mousedown', function(event) {
-            var x = event.offsetX;
-            var y = event.offsetY;
-            fillCell(x, y);
-        });
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0,0,500,500)//矩形起始点的横纵坐标和宽高
 
-        canvas.addEventListener('mousemove', function(event) {
-            if (event.buttons === 1) {
-                var x = event.offsetX;
-                var y = event.offsetY;
-                fillCell(x, y);
-            }
-        });
 
-        function fillCell(x, y) {
-            ctx.fillStyle = color;
-            ctx.fillRect(Math.floor(x / cellSize) * cellSize, Math.floor(y / cellSize) * cellSize, cellSize, cellSize);
-        }
+    canvas.addEventListener('mousedown', function(event) {
+        var x = event.offsetX;
+        var y = event.offsetY;
+        fillCell(x, y);
+    });
 
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+    // canvas.addEventListener('mousemove', function(event) {
+    //     if (event.buttons === 1) {
+    //         var x = event.offsetX;
+    //         var y = event.offsetY;
+    //         fillCell(x, y);
+    //     }
+    // });
 
-        document.getElementById('cellSize').addEventListener('change', function(event) {
-            cellSize = parseInt(event.target.value);
-        });
+    function fillCell(x, y) {
+        ctx.fillStyle = color;
+        ctx.fillRect(Math.floor(x / cellSize) * cellSize, Math.floor(y / cellSize) * cellSize, cellSize, cellSize);
+    }
 
-        document.getElementById('color').addEventListener('change', function(event) {
-            color = event.target.value;
-        });
-    </script>
-</body>
+
+    document.getElementById('cellSize').addEventListener('change', function(event) {
+        cellSize = parseInt(event.target.value);
+    });
+
+    document.getElementById('color').addEventListener('change', function(event) {
+        color = event.target.value;
+    });
+</script>
 </html>
