@@ -82,7 +82,7 @@
     });
    
     socket.on("initCanvas", (e) => {
-        //console.log(e)
+        console.log(JSON.stringify(e))
         //初始化画布
         for(let i=0;i<e.length;i++){
             for(let j=0;j<e[i].length;j++){
