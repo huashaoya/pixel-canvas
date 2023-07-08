@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <title>芥子世界</title>
     </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
       <style>
         #header{
             width:100%;
@@ -74,6 +75,10 @@
             </div>
  </body>   
  <script>
+    const socket = io("127.0.0.1:3001");
+    socket.on("connect", () => {
+    // ... 
+    });
     // var body = document.querySelector("body")
     // body.style.cursor= "pointer"
 
