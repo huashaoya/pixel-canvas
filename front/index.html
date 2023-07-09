@@ -23,8 +23,8 @@
             color:#6BA25E;          
         }
         #body #kuang{
-            width:580px;
-            height: 580px;
+            width:1080px;
+            height: 1080px;
             background-color:#6BA25E;            
             margin:10px auto;
             border-radius:30px;
@@ -47,20 +47,20 @@
             border: 1px solid #6BA25E;
             margin: 40px;
             border-radius: 10px;
-            image-rendering: pixelated; /* 防止放大后像素模糊 */
+            image-rendering: pixelated; /* 防止放大像素模糊 */
         }      
         </style>         
     </head>    
  <body>     	
-  <div id="header">
+    <div id="header">
         <h1 class="title">芥子世界</h1>
        <h3 class="author">Created by hsy V2.0.0</h3>
     </div>
-     <div id="body">
-         <div id='kuang'>          
-            <canvas id="canvas" width="500" height="500"></canvas>
-         </div>        
-     </div>      
+    <div id="body">
+        <div id='kuang'>          
+        <canvas id="canvas" width="1000" height="1000"></canvas>
+        </div>        
+    </div>      
     <div class="rg" id="secc">
         <p>选择芥子颜色</p>
         <input type="color" id="color"/>
@@ -74,17 +74,17 @@
     var ctx = canvas.getContext('2d');
     
     var color = '#000';
-    var cellSize = 2;
+    var cellSize = 4;
 
     //连接socket服务器
-    const socket = io("127.0.0.1:3008");
+    const socket = io("106.55.171.221:3008");
     socket.on("connect", () => {
         console.log('连接成功')
         document.getElementById('client-status').innerText='连接服务器成功'
     });
    
     socket.on("initCanvas", (e) => {
-        console.log(JSON.stringify(e))
+        //console.log(JSON.stringify(e))
         //初始化画布
         for(let i=0;i<e.length;i++){
             for(let j=0;j<e[i].length;j++){
