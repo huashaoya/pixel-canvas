@@ -47,13 +47,14 @@
             border: 1px solid #6BA25E;
             margin: 40px;
             border-radius: 10px;
+            image-rendering: pixelated; /* 防止放大后像素模糊 */
         }      
         </style>         
     </head>    
  <body>     	
   <div id="header">
         <h1 class="title">芥子世界</h1>
-       <h3 class="author">Created by cxk V2.0.0</h3>
+       <h3 class="author">Created by hsy V2.0.0</h3>
     </div>
      <div id="body">
          <div id='kuang'>          
@@ -71,11 +72,12 @@
  <script>
      var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
+    
     var color = '#000';
-    var cellSize = 10;
+    var cellSize = 2;
 
     //连接socket服务器
-    const socket = io("127.0.0.1:3001");
+    const socket = io("127.0.0.1:3008");
     socket.on("connect", () => {
         console.log('连接成功')
         document.getElementById('client-status').innerText='连接服务器成功'
