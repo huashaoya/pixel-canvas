@@ -1,0 +1,42 @@
+/* #header{
+    width:100%;
+    margin: 0 auto;
+    text-align: center;
+}
+#header .title{
+    font:bold 50px Arial;
+        margin:0px auto;
+    color:#6BA25E;           
+}
+#header .author{
+    font-size:15px;
+    margin:5px auto;
+    color:#6BA25E;          
+} */
+#body #kuang{
+    width:1080px;
+    height: 1080px;
+    background-color:#6BA25E;            
+    margin:10px auto;
+    border-radius:30px;
+    position: relative;
+}
+#body #kuang .px{
+    position: absolute;
+    width:5px;
+    height: 5px;          
+} 
+.rg{
+        float: left;
+        width: 400px;
+        height: 100px;
+        text-align: center;
+        border: 1px black solid;
+        margin-left:-1px ;
+    } 
+canvas {
+    border: 1px solid #6BA25E;
+    margin: 40px;
+    border-radius: 10px;
+    image-rendering: pixelated; /* 防止放大像素模糊 */
+}  

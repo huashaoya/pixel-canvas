@@ -1,3 +1,8 @@
+<!-- 
+    芥子世界 V2
+    开源欢迎参与贡献-花哨呀i
+    20230708 
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,60 +10,13 @@
         <meta charset="utf-8">
         <title>芥子世界</title>
     </head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
-        <style>
-        #header{
-            width:100%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        #header .title{
-            font:bold 50px Arial;
-             margin:0px auto;
-            color:#6BA25E;           
-        }
-        #header .author{
-            font-size:15px;
-            margin:5px auto;
-            color:#6BA25E;          
-        }
-        #body #kuang{
-            width:1080px;
-            height: 1080px;
-            background-color:#6BA25E;            
-            margin:10px auto;
-            border-radius:30px;
-            position: relative;
-        }
-        #body #kuang .px{
-           position: absolute;
-           width:5px;
-           height: 5px;          
-        } 
-        .rg{
-				float: left;
-				width: 400px;
-				height: 100px;
-				text-align: center;
-				border: 1px black solid;
-				margin-left:-1px ;
-			} 
-        canvas {
-            border: 1px solid #6BA25E;
-            margin: 40px;
-            border-radius: 10px;
-            image-rendering: pixelated; /* 防止放大像素模糊 */
-        }      
-        </style>         
-    </head>    
+    <link rel="stylesheet" type="text/css" href="./css/index.css">    
  <body>     	
-    <div id="header">
-        <h1 class="title">芥子世界</h1>
-       <h3 class="author">Created by hsy V2.0.0</h3>
-    </div>
     <div id="body">
         <div id='kuang'>          
-        <canvas id="canvas" width="1000" height="1000"></canvas>
+        <canvas id="canvas" width="1000" height="1000">
+            你的浏览器不支持canvas,请升级你的浏览器
+        </canvas>
         </div>        
     </div>      
     <div class="rg" id="secc">
@@ -69,52 +27,6 @@
         状态：<div id="client-status">正在连接服务器</div>
     </div>
  </body>   
- <script>
-     var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-    
-    var color = '#6BA25E';
-    var cellSize = 4;
-
-    //连接socket服务器
-    const socket = io("106.55.171.221:3008");
-    socket.on("connect", () => {
-        console.log('连接成功')
-        document.getElementById('client-status').innerText='连接服务器成功'
-    });
-   
-    socket.on("initCanvas", (e) => {
-        //console.log(JSON.stringify(e))
-        //初始化画布
-        for(let i=0;i<e.length;i++){
-            for(let j=0;j<e[i].length;j++){
-                ctx.fillStyle = e[i][j]
-                ctx.fillRect(i*cellSize,j*cellSize,cellSize,cellSize)
-            }           
-        }
-        
-    });
-    socket.on("update",(e)=>{
-            console.log(e)  
-            ctx.fillStyle = e[2];
-            ctx.fillRect(e[0]* cellSize,e[1] * cellSize, cellSize, cellSize);
-    })
-    //点击画布
-    canvas.addEventListener('mousedown', function(event) {
-        var x = event.offsetX;
-        var y = event.offsetY;
-        fillCell(x, y);
-    });
-
-    //画像素点
-    function fillCell(x, y) {
-        //ctx.fillStyle = color;
-        //ctx.fillRect(Math.floor(x / cellSize) * cellSize, Math.floor(y / cellSize) * cellSize, cellSize, cellSize);
-        socket.emit('draw',[Math.floor(x / cellSize), Math.floor(y / cellSize),color])
-    }
-    //选择颜色
-    document.getElementById('color').addEventListener('change', function(event) {
-        color = event.target.value;
-    });
-</script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+ <script src="./js/index.js"></script>
 </html>
