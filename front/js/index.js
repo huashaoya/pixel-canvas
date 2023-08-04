@@ -1,5 +1,5 @@
-//let serverAddress="106.55.171.221:3008"//线上服务器
-let serverAddress="127.0.0.1:3008"//本地服务器
+let serverAddress="106.55.171.221:3008"//线上服务器
+//let serverAddress="127.0.0.1:3008"//本地服务器
 var color = '#6BA25E';
 var cellSize = 4;
 
